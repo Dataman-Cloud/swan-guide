@@ -1,7 +1,7 @@
 # Event功能的设计实现
 Event功能是为swan与其周边组件交互而设计的。  
 
-周边组件可以通过api(swan_addr:port/events)与swan manager建立长连接,来监听swan的event事件
+周边组件可以通过api与swan manager建立长连接,来监听swan的event事件
 
 ## 设计实现:
 event的设计结构如图所示:
@@ -14,7 +14,10 @@ event的设计结构如图所示:
 目前swan中实现了三个subscriber: dns_event_suscriber, janitor_event_subscriber, sse_event_suscriber。
 
 dns_event_subscriber: 此subscriber为dns服务，监听EventTypeTaskHealthy和EventTypeTaskUnhealthy事件，然后将事件信息封装成dns可以识别的类型，发送到dns监听的channel中。  
-janitor_event_subscriber: 此subscriber为proxy服务，监听监听EventTypeTaskHealthy和EventTypeTaskUnhealthy事件,然后将事件封装成janitor可以识别的类型，发送到janitor监听的channel中。 sse_event_subscriber: 此subscriber为api服务，swan对外暴露了一个sse服务: /events, subscriber会将所有事件通过api发送到客户端。  
+
+janitor_event_subscriber: 此subscriber为proxy服务，监听监听EventTypeTaskHealthy和EventTypeTaskUnhealthy事件,然后将事件封装成janitor可以识别的类型，发送到janitor监听的channel中。 
+
+sse_event_subscriber: 此subscriber为api服务，swan对外暴露了一个sse服务: /events, subscriber会将所有事件通过api发送到客户端。 
 
 ## 详细设计:
 
