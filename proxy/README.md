@@ -1,6 +1,7 @@
 # Proxy设计和实现原理
-proxy是基于[swan](https://github.com/Dataman-Cloud/swan)调度器之上的一层设计,其目的是为了解决通过task id或者app id来定位服务地址的问题。
-例如当用户请求0.app.user.cluster.domain.com时，proxy通过解析请求的地址，找到其服务实际运行的ip:port,然后将请求反向代理到此ip:port上。
+proxy是基于[swan](https://github.com/Dataman-Cloud/swan)调度器之上的一层设计,其目的是为了解决七层服务发现的问题,即可以通过http://task_id.app_id.user_id.custer_id:80/来访问某个实例的port0暴露的服务。
+
+其实现原理为: 当用户请求0.app.user.cluster.domain.com时，proxy通过解析请求的地址，找到其服务实际运行的ip:port,然后将请求反向代理到此ip:port上。
 
 源码地址: [https://github.com/Dataman-Cloud/swan-janitor](https://github.com/Dataman-Cloud/swan-janitor)
 
